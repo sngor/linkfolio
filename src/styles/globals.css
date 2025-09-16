@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  @apply bg-white text-gray-900 dark:bg-black dark:text-gray-100;
+}
+
+/* Theming variables for animated gradient and glassmorphism */
+:root {
+  --gradient-start: #f0f9ff; /* sky-50 */
+  --gradient-mid-1: #e0f2fe; /* sky-100 */
+  --gradient-mid-2: #dbeafe; /* blue-200 */
+  --gradient-end: #bfdbfe; /* blue-300 */
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(0, 0, 0, 0.05);
+  --shadow-color-rgb: 6, 182, 212; /* cyan-500 */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --gradient-start: #1f2937;
+    --gradient-mid-1: #111827;
+    --gradient-mid-2: #0369a1;
+    --gradient-end: #06b6d4;
+    --glass-bg: rgba(31, 41, 55, 0.5);
+    --glass-border: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Animated gradient background */
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.bg-animated-gradient {
+  background: linear-gradient(
+    -45deg,
+    var(--gradient-start),
+    var(--gradient-mid-1),
+    var(--gradient-mid-2),
+    var(--gradient-end)
+  );
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+/* Glass card */
+.glass-card {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 25px 50px -12px rgba(var(--shadow-color-rgb), 0.1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+.animate-slide-up {
+  opacity: 0;
+  animation: slideUp 0.6s ease-out forwards;
+}
+
+/* Delay utilities */
+.delay-100 {
+  animation-delay: 0.1s;
+}
+.delay-200 {
+  animation-delay: 0.2s;
+}
+.delay-300 {
+  animation-delay: 0.3s;
+}
+.delay-400 {
+  animation-delay: 0.4s;
+}
+.delay-500 {
+  animation-delay: 0.5s;
+}
+.delay-600 {
+  animation-delay: 0.6s;
+}
+.delay-700 {
+  animation-delay: 0.7s;
+}
+
+/* AWS Amplify Authenticator Custom Styling */
+[data-amplify-authenticator] {
+  --amplify-colors-font-primary: rgb(51 65 85);
+  --amplify-colors-font-secondary: rgb(100 116 139);
+  --amplify-colors-background-primary: transparent;
+  --amplify-colors-background-secondary: rgba(248, 250, 252, 0.8);
+  --amplify-colors-border-primary: rgba(203, 213, 225, 0.6);
+  --amplify-colors-border-focus: rgb(6 182 212);
+  --amplify-colors-brand-primary-10: rgb(6 182 212);
+  --amplify-colors-brand-primary-80: rgb(8 145 178);
+  --amplify-colors-brand-primary-90: rgb(14 116 144);
+  --amplify-colors-brand-primary-100: rgb(22 78 99);
+  --amplify-radii-small: 0.75rem;
+  --amplify-radii-medium: 1rem;
+  --amplify-radii-large: 1.5rem;
+  --amplify-space-small: 0.75rem;
+  --amplify-space-medium: 1rem;
+  --amplify-space-large: 1.5rem;
+  --amplify-shadows-small: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --amplify-shadows-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-amplify-authenticator] {
+    --amplify-colors-font-primary: rgb(241 245 249);
+    --amplify-colors-font-secondary: rgb(203 213 225);
+    --amplify-colors-background-secondary: rgba(30, 41, 59, 0.8);
+    --amplify-colors-border-primary: rgba(71, 85, 105, 0.6);
+  }
+}
+
+[data-amplify-authenticator] .amplify-button--primary {
+  background: linear-gradient(135deg, rgb(6 182 212), rgb(8 145 178));
+  border: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  transform: translateY(0);
+}
+
+[data-amplify-authenticator] .amplify-button--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 25px -5px rgba(6, 182, 212, 0.4);
+}
+
+[data-amplify-authenticator] .amplify-input {
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+[data-amplify-authenticator] .amplify-input:focus {
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+  transform: translateY(-1px);
+}
+
+[data-amplify-authenticator] .amplify-tabs-item {
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+[data-amplify-authenticator] .amplify-tabs-item[data-state="active"] {
+  color: rgb(6 182 212);
+  border-bottom-color: rgb(6 182 212);
+}
